@@ -3,9 +3,9 @@ const service1Name = "Basic";
 const service2Name = "Express";
 const service3Name = "Extreme";
 const service4Name = "Ultimate";
-const service1Speed = "50 Mbps";
-const service2Speed = "100 Mbps";
-const service3Speed = "500 Mbps";
+const service1Speed = "50 Mbsp";
+const service2Speed = "100 Mbsp";
+const service3Speed = "500 Mbsp";
 const service4Speed = "1 Gig";
 
 
