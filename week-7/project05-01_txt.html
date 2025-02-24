@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
 
+  <!--
+      JavaScript 7th Edition
+      Chapter 5
+      Hands-on Project 5-1
+
+      Author: Leah Thames
+      Date: February 23, 2025
+
+      Filename: project05-01.html
+   -->
+
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Hands-on Project 5-1</title>
+   <link rel="stylesheet" href="styles.css" />
+
+    <script src="project05-01.js"></script>
+
+
+</head>
+
+<body>
+   <header>
+      <h1>
+         Hands-on Project 5-1
+      </h1>
+   </header>
+
+
+  <div id="quiz">
+    <h1>Math Quiz</h1>
+    <div id="startContainer">
+        <button id="start">Start Quiz</button>
+    </div>
+    <div id="quizContent" class="questions-container">
+        <label for="quizClock">Time remaining:</label>
+        <div>Time remaining: <input type="text" id="quizClock" readonly></div>
+        <table>
+            <tr>
+                <td><label for="question1">5 + 2x = 25</label></td>
+                <td>x = <input type="text" id="question1"></td>
+            </tr>
+            <tr>
+                <td><label for="question2">30 - 5x = 10</label></td>
+                <td>x = <input type="text" id="question2"></td>
+            </tr>
+            <tr>
+              <td><label for="question3">6 + 3x = -12</label></td>
+              <td>x = <input type="text" id="question3"></td>
+          </tr>
+          <tr>
+              <td><label for="question4">44 - 12x = -16</label></td>
+              <td>x = <input type="text" id="question4"></td>
+          </tr>
+          <tr>
+              <td><label for="question5">48 + 6x = 6</label></td>
+              <td>x = <input type="text" id="question5"></td>
+          </tr>
+      </table>
+      <button id="check">Check Answers</button>
+      <button id="restart">Restart Quiz</button>
+  </div>
+</div>
+
+
+   <script>
+    var timeLeft = 300, quizTime = 300, timeID;
+    var correctAnswers = ['10', '4', '-6', '5', '-7'];
+    var quizContent = document.getElementById('quizContent');
+    var quizClock = document.getElementById('quizClock');
+    var startButton = document.getElementById('start');
+    var checkButton = document.getElementById('check');
+    var restartButton = document.getElementById('restart');
+    quizClock.value = timeLeft;
+
+    function startQuiz() {
+        startButton.style.display = 'none';
+        quizContent.classList.add('active');
+        timeID = setInterval(countdown, 1000);
+        clearInputs();
+    }
+    
+    function clearInputs() {
+        for(let i = 1; i <= 5; i++) {
+            document.getElementById('question' + i).value = '';
+        }
+    }
+    function checkAnswers() {
+      let totalCorrect = 0;
+      for(let i = 1; i <= 5; i++) {
+          let answer = document.getElementById('question' + i).value;
+          if(answer === correctAnswers[i-1]) totalCorrect++;
+      }
+      alert(`You got ${totalCorrect} out of 5 correct.`);
+  }
+  function resetQuiz() {
+      clearInputs();
+      timeLeft = quizTime;
+      quizClock.value = timeLeft;
+      quizContent.classList.remove('active');
+      startButton.style.display = 'block';
+      clearInterval(timeID);
+  }
+  function countdown() {
+      if(timeLeft === 0) {
+          clearInterval(timeID);
+          checkAnswers();
+          resetQuiz();
+      } else {
+          timeLeft--;
+          quizClock.value = timeLeft;
+      }
+  }
+
+  startButton.addEventListener('click', startQuiz);
+  checkButton.addEventListener('click', checkAnswers);
+  restartButton.addEventListener('click', resetQuiz);
+  </script>
+
+
+</body>
+</html>
