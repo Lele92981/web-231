@@ -31,7 +31,8 @@
    </header>
 
 
-  <div id="quiz">
+  <div id="quiz" style="padding-top: 100px">
+
     <h1>Math Quiz</h1>
     <div id="startContainer">
         <button id="start">Start Quiz</button>
@@ -83,7 +84,7 @@
         timeID = setInterval(countdown, 1000);
         clearInputs();
     }
-    
+
     function clearInputs() {
         for(let i = 1; i <= 5; i++) {
             document.getElementById('question' + i).value = '';
